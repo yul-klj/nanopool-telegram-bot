@@ -72,9 +72,9 @@ bot.on('message', (msg) => {
       request(reportedHashRates, function (error, response, body) {
         if (!error && response.statusCode == 200) {
           const res = JSON.parse(body);
-          var line = 'Worker details as of ' + ':- \n' + today + '\n';
+          var line = `Worker details as of :- \n${today}\n`;
           for (i in res['data']) {
-            line += res['data'][i]['worker'] + ' : [' + res['data'][i]['hashrate'] + ']\n';
+            line += `${res['data'][i]['worker']} : [${res['data'][i]['hashrate']}]\n`;
           }
           bot.sendMessage(chatId, line);
         }
@@ -87,7 +87,6 @@ bot.on('message', (msg) => {
 // Woker hashrate < than how much will notify bot
 schedule.scheduleJob(process.env.CRON_SHCEDULE, function(){
   if (notifyChatId === '') {
-    console.log('No monitoring being initialize');
     return;
   }
 
