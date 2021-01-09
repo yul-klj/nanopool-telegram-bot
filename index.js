@@ -10,6 +10,8 @@ if (dotenv.error) {
 
 var notifyChatId = '';
 const reportedHashRates = process.env.NANOPOOL_BASE_URL + 'reportedhashrates/' + process.env.WALLET_ADDRESS;
+const balance = process.env.NANOPOOL_BASE_URL + 'balance_hashrate/' + process.env.WALLET_ADDRESS;
+
 const token = process.env.TELEGRAM_BOT_TOKEN;
 const bot = new TelegramBot(token, {polling: true});
 var wokerLimit = process.env.WORKER_MIN_THRESHOLD.split(",");
@@ -41,6 +43,22 @@ bot.on('message', (msg) => {
       } else {
         bot.sendMessage(chatId, 'Yes it is');
       }
+      break;
+    case 'BALANCE':
+      var today = new Date().toLocaleDateString('en-GB', {
+        day:   'numeric',
+        month: 'short',
+        year:  'numeric',
+        hour:   '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      request(balance, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+          const res = JSON.parse(body);
+          bot.sendMessage(chatId, `ETH Balance: ${res['data']['balance']}`);
+        }
+      });
       break;
     case 'TELL ME':
       var today = new Date().toLocaleDateString('en-GB', {
