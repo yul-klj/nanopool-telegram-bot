@@ -3,6 +3,9 @@ const dotenv = require('dotenv').config();
 const request = require('request');
 const TelegramBot = require('node-telegram-bot-api');
 const schedule = require('node-schedule');
+const rp = require('request-promise');
+const $ = require('cheerio');
+const whattomineUrl = 'https://whattomine.com/coins/151-eth-ethash';
 
 if (dotenv.error) {
   throw dotenv.error
@@ -78,6 +81,17 @@ bot.on('message', (msg) => {
           }
           bot.sendMessage(chatId, line);
         }
+      });
+      break;
+    case 'BR': // Block Reward
+    case 'BLOCK REWARD': // Block Reward
+      rp(whattomineUrl)
+      .then(function(html){
+        //success!
+        bot.sendMessage(chatId, `Block Reward: ${$('#br', html).val()}`);
+      })
+      .catch(function(err){
+        bot.sendMessage(chatId, `Something wrong getting Block Reward.`);
       });
       break;
   }
