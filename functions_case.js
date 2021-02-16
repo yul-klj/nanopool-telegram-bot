@@ -9,7 +9,8 @@ var config = {
   'BR': require('./functions/block-reward.js'),
   'BLOCK REWARD': require('./functions/block-reward.js'),
   'BALANCE': require('./functions/balance.js'),
-  'HASHRATE': require('./functions/report-worker.js')
+  'HASHRATE': require('./functions/report-worker.js'),
+  'CALCULATOR': require('./functions/calculator.js'),
 };
 
 module.exports = config;
