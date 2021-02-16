@@ -24,10 +24,11 @@ bot.on('message', (msg) => {
   }
 });
 
+// TODO: Currently not working
 // For scheduler watcher
-scheduleFunc(
-  process.env.CRON_SHCEDULE,
-  process.env.WORKER_MIN_THRESHOLD.split(","),
-  bot,
-  notifyChatId
-);
+// scheduleFunc(
+//   process.env.CRON_SHCEDULE,
+//   process.env.WORKER_MIN_THRESHOLD.split(","),
+//   bot,
+//   notifyChatId
+// );
