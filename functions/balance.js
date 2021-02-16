@@ -16,7 +16,7 @@ module.exports = function(bot, notifyChatId, chatId) {
   request(balance, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       const res = JSON.parse(body);
-      bot.sendMessage(chatId, `At ${today}:-\nETH Balance: ${res['data']['balance']}`);
+      bot.sendMessage(chatId, `At ${today}:-\nETH Balance: ${parseFloat(res['data']['balance']).toFixed(5)}`);
     }
   });
 };
