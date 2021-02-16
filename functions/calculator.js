@@ -36,7 +36,7 @@ module.exports = function(bot, notifyChatId, chatId) {
             if (!error && response.statusCode == 200) {
               const res = JSON.parse(body);
               const estimateDay = (0.1 - res['data']['balance']) / dailyCoinEarn;
-              line += `\nEstimate reaches 0.1 in:\n${parseFloat(estimateDay).toFixed(2)} Day(s) \n`;
+              line += `\nEstimate Payout 0.1 in:\n${parseFloat(estimateDay).toFixed(2)} Day(s) \n`;
 
               bot.sendMessage(chatId, line);
             }
