@@ -1,7 +1,7 @@
 // Checkes env available
 const dotenv = require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
-const functionsCase = require('./functions_case.js');
+const functionsCaseConfig = require('./functions_case.js').config;
 const scheduleFunc = require('./functions/schedule.js');
 
 if (dotenv.error) {
@@ -17,17 +17,18 @@ bot.on('message', (msg) => {
   var text = msg.text;
   let keyword = text.toUpperCase();
 
-  if (typeof functionsCase[keyword] !== "function") {
+  if (typeof functionsCaseConfig()[keyword] !== "function") {
     bot.sendMessage(chatId, 'The command is not available.');
   } else {
-    functionsCase[keyword](bot, notifyChatId, chatId);
+    functionsCaseConfig()[keyword](bot, notifyChatId, chatId);
   }
 });
 
+// TODO: Currently not working
 // For scheduler watcher
-scheduleFunc(
-  process.env.CRON_SHCEDULE,
-  process.env.WORKER_MIN_THRESHOLD.split(","),
-  bot,
-  notifyChatId
-);
+// scheduleFunc(
+//   process.env.CRON_SHCEDULE,
+//   process.env.WORKER_MIN_THRESHOLD.split(","),
+//   bot,
+//   notifyChatId
+// );
