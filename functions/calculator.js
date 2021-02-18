@@ -3,6 +3,7 @@ const request = require('request');
 const approxEarn = process.env.NANOPOOL_BASE_URL + 'approximated_earnings/';
 const totalReportedHashRate = process.env.NANOPOOL_BASE_URL + 'reportedhashrate/' + process.env.WALLET_ADDRESS;
 const balance = process.env.NANOPOOL_BASE_URL + 'balance_hashrate/' + process.env.WALLET_ADDRESS;
+const payoutSetting = process.env.NANOPOOL_BASE_URL + 'usersettings/' + process.env.WALLET_ADDRESS;
 
 module.exports = async function(bot, notifyChatId, chatId) {
   var convertTZ = function(date, tzString) {
@@ -30,11 +31,15 @@ module.exports = async function(bot, notifyChatId, chatId) {
   const balanceReq = await requestPromise(balance);
   const balanceRes = JSON.parse(balanceReq.body);
 
+  const payoutSettingReq = await requestPromise(payoutSetting);
+  const payoutSettingRes = JSON.parse(payoutSettingReq.body);
+
   let line = 'Something wrong with the api';
   if (
     totalReportedReq.statusCode == 200 &&
     approxEarnReq.statusCode == 200 &&
-    balanceReq.statusCode == 200
+    balanceReq.statusCode == 200 &&
+    payoutSettingReq.statusCode == 200
   ) {
     // Calculator
     line = 'Approx Calculator:-\n';
@@ -46,7 +51,7 @@ module.exports = async function(bot, notifyChatId, chatId) {
 
     // Estimate Payout
     const estimateDay = (0.1 - balanceRes['data']['balance']) / dailyCoinEarn;
-    line += `\nEstimate Payout 0.1 in:\n${parseFloat(estimateDay).toFixed(2)} Day(s) \n`;
+    line += `\nEstimate Payout ${payoutSettingRes['data']['payout']} in:\n${parseFloat(estimateDay).toFixed(2)} Day(s) \n`;
   }
 
   bot.sendMessage(chatId, line);
