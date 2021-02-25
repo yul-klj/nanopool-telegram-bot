@@ -15,6 +15,7 @@ module.exports = {
       'BALANCE': require('./functions/balance.js'),
       'HASHRATE': require('./functions/report-worker.js'),
       'CALCULATOR': require('./functions/calculator.js'),
+      'LUNO': require('./functions/luno-pricing.js'),
     };
   },
   keys: function() {
@@ -23,7 +24,8 @@ module.exports = {
       'BLOCK REWARD',
       'BALANCE',
       'HASHRATE',
-      'CALCULATOR'
+      'CALCULATOR',
+      'LUNO'
     ];
   }
 };
