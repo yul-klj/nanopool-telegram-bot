@@ -21,13 +21,10 @@ module.exports = {
   },
   keys: function() {
     return [
-      'HELP',
-      'SPARK SUMMARY',
-      'BLOCK REWARD',
-      'LUNO',
-      'NANO BALANCE',
-      'NANO HASHRATE',
-      'NANO CALCULATOR'
+      ['HELP'],
+      ['BLOCK REWARD', 'LUNO'],
+      ['SPARK SUMMARY'],
+      ['NANO BALANCE', 'NANO HASHRATE', 'NANO CALCULATOR']
     ];
   }
 };
