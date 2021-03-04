@@ -10,22 +10,24 @@ module.exports = {
       // '/START': require('./functions/monitoring.js').start,
       // '/STOP': require('./functions/monitoring.js').stop,
       'HELP': require('./functions/help.js'),
-      'BR': require('./functions/block-reward.js'),
+      'SPARK SUMMARY': require('./functions/spark-summary.js'),
       'BLOCK REWARD': require('./functions/block-reward.js'),
-      'BALANCE': require('./functions/balance.js'),
-      'HASHRATE': require('./functions/report-worker.js'),
-      'CALCULATOR': require('./functions/calculator.js'),
+      'BR': require('./functions/block-reward.js'),
       'LUNO': require('./functions/luno-pricing.js'),
+      'NANO BALANCE': require('./functions/balance.js'),
+      'NANO HASHRATE': require('./functions/report-worker.js'),
+      'NANO CALCULATOR': require('./functions/calculator.js')
     };
   },
   keys: function() {
     return [
       'HELP',
+      'SPARK SUMMARY',
       'BLOCK REWARD',
-      'BALANCE',
-      'HASHRATE',
-      'CALCULATOR',
-      'LUNO'
+      'LUNO',
+      'NANO BALANCE',
+      'NANO HASHRATE',
+      'NANO CALCULATOR'
     ];
   }
 };
