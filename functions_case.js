@@ -9,22 +9,22 @@ module.exports = {
       // 'MONITORING': require('./functions/monitoring.js').status,
       // '/START': require('./functions/monitoring.js').start,
       // '/STOP': require('./functions/monitoring.js').stop,
-      'HELP': require('./functions/help.js'),
-      'SPARK SUMMARY': require('./functions/spark-summary.js'),
-      'BLOCK REWARD': require('./functions/block-reward.js'),
-      'BR': require('./functions/block-reward.js'),
-      'LUNO': require('./functions/luno-pricing.js'),
-      'NANO BALANCE': require('./functions/balance.js'),
-      'NANO HASHRATE': require('./functions/report-worker.js'),
-      'NANO CALCULATOR': require('./functions/calculator.js')
+      '/HELP': require('./functions/help.js'),
+      '/SPARK-SUMMARY': require('./functions/spark-summary.js'),
+      '/BLOCK-REWARD': require('./functions/block-reward.js'),
+      '/BR': require('./functions/block-reward.js'),
+      '/LUNO': require('./functions/luno-pricing.js'),
+      '/NANO-BALANCE': require('./functions/balance.js'),
+      '/NANO-HASHRATE': require('./functions/report-worker.js'),
+      '/NANO-CALCULATOR': require('./functions/calculator.js')
     };
   },
   keys: function() {
     return [
-      ['HELP'],
-      ['BLOCK REWARD', 'LUNO'],
-      ['SPARK SUMMARY'],
-      ['NANO BALANCE', 'NANO HASHRATE', 'NANO CALCULATOR']
+      ['/HELP'],
+      ['/BLOCK-REWARD', '/LUNO'],
+      ['/SPARK-SUMMARY'],
+      // ['NANO BALANCE', 'NANO HASHRATE', 'NANO CALCULATOR'] // Temp Disabled from help, no people using
     ];
   }
 };

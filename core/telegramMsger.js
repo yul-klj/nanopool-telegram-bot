@@ -11,10 +11,12 @@ module.exports = {
       var text = msg.text;
       let keyword = text.toUpperCase();
 
-      if (typeof functionsCaseConfig()[keyword] !== "function") {
-        bot.sendMessage(chatId, 'The command is not available.');
-      } else {
-        functionsCaseConfig()[keyword](bot, notifyChatId, chatId);
+      if (keyword.charAt(0) === "/") {
+        if (typeof functionsCaseConfig()[keyword] !== "function") {
+          bot.sendMessage(chatId, 'The command is not available.');
+        } else {
+          functionsCaseConfig()[keyword](bot, notifyChatId, chatId);
+        }
       }
     });
   }
