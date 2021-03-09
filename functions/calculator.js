@@ -37,7 +37,7 @@ module.exports = async function(bot, notifyChatId, chatId) {
     line += `Each ETH Price USD: ${approxEarnRes['data']['prices']['price_usd']}\n`;
 
     // Estimate Payout
-    const estimateDay = (0.1 - balanceRes['data']['balance']) / dailyCoinEarn;
+    const estimateDay = (payoutSettingRes['data']['payout'] - balanceRes['data']['balance']) / dailyCoinEarn;
     line += `\nEstimate Payout ${payoutSettingRes['data']['payout']} in:\n${parseFloat(estimateDay).toFixed(2)} Day(s) \n`;
   }
 
